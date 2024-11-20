@@ -12,6 +12,11 @@ let unicornLeftImg;
 
 let velosityX = 0;
 
+let planetArray = [];
+let planetWidth = 60;
+let planetHeight = 60;
+let planetImg;
+
 let unicorn = {
   img: null,
   x: unicornX,
@@ -45,6 +50,10 @@ window.onload = function () {
   unicornLeftImg = new Image();
   unicornLeftImg.src = "images/unicorn-left.png";
 
+  planetImg = new Image();
+  planetImg.src = "images/bp2-removebg-preview.png";
+
+  placePlanets();
   requestAnimationFrame(update);
   document.addEventListener("keydown", moveUnicorn);
 
@@ -66,6 +75,17 @@ window.onload = function () {
       unicorn.width,
       unicorn.height
     );
+
+    for (let i = 0; i < planetArray.length; i++) {
+      let planet = planetArray[i];
+      context.drawImage(
+        planet.img,
+        planet.x,
+        planet.y,
+        planet.width,
+        planet.height
+      );
+    }
   }
 
   function moveUnicorn(e) {
@@ -78,3 +98,15 @@ window.onload = function () {
     }
   }
 };
+
+function placePlanets() {
+  planetArray = [];
+  let planet = {
+    img: planetImg,
+    x: boardWidth / 2,
+    y: boardHeight - 90,
+    width: planetWidth,
+    height: planetHeight,
+  };
+  planetArray.push(planet);
+}
