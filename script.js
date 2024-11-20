@@ -11,10 +11,13 @@ let unicornRightImg;
 let unicornLeftImg;
 
 let velosityX = 0;
+let velocityY = 0;
+let initialVelocityY = -8;
+let gravity = 0.4;
 
 let planetArray = [];
-let planetWidth = 60;
-let planetHeight = 60;
+let planetWidth = 35;
+let planetHeight = 35;
 let planetImg;
 
 let unicorn = {
@@ -51,7 +54,9 @@ window.onload = function () {
   unicornLeftImg.src = "images/unicorn-left.png";
 
   planetImg = new Image();
-  planetImg.src = "images/bp2-removebg-preview.png";
+  planetImg.src = "images/planetik.png";
+
+  velocityY = initialVelocityY;
 
   placePlanets();
   requestAnimationFrame(update);
@@ -68,6 +73,8 @@ window.onload = function () {
       unicorn.x = boardWidth;
     }
 
+    velocityY += gravity;
+    unicorn.y += velocityY;
     context.drawImage(
       unicorn.img,
       unicorn.x,
@@ -78,6 +85,9 @@ window.onload = function () {
 
     for (let i = 0; i < planetArray.length; i++) {
       let planet = planetArray[i];
+      if (detectCollision(unicorn, planet) && velocityY >= 0) {
+        velocityY = initialVelocityY;
+      }
       context.drawImage(
         planet.img,
         planet.x,
@@ -109,4 +119,34 @@ function placePlanets() {
     height: planetHeight,
   };
   planetArray.push(planet);
+
+  // planet = {
+  //   img: planetImg,
+  //   x: boardWidth / 2,
+  //   y: boardHeight - 190,
+  //   width: planetWidth,
+  //   height: planetHeight,
+  // };
+  // planetArray.push(planet);
+
+  for (let i = 0; i < 6; i++) {
+    let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
+    let planet = {
+      img: planetImg,
+      x: randomX,
+      y: boardHeight - 75 * i - 190,
+      width: planetWidth,
+      height: planetHeight,
+    };
+    planetArray.push(planet);
+  }
+}
+
+function detectCollision(a, b) {
+  return (
+    a.x < b.x + b.width &&
+    a.x + a.width > b.x &&
+    a.y < b.y + b.height &&
+    a.y + a.height > b.y
+  );
 }
