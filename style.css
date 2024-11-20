@@ -3,5 +3,6 @@ body {
 }
 
 #board {
-  background-color: palevioletred;
+  /* background-color: palevioletred; */
+  background-image: url("images/clouds5.png");
 }
