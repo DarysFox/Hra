@@ -5,8 +5,8 @@ let context;
 
 let unicornWidth = 46;
 let unicornHeight = 46;
-let unicornX = unicornWidth / 2 - unicornWidth / 2;
-let unicornY = (unicornHeight * 7) / 8 - unicornHeight;
+let unicornX = 150;
+let unicornY = (unicornHeight * 85) / 8 - unicornHeight;
 let unicornRightImg;
 let unicornLeftImg;
 
@@ -46,10 +46,19 @@ window.onload = function () {
   unicornLeftImg.src = "images/unicorn-left.png";
 
   requestAnimationFrame(update);
-  document.addEventListener("keydown", moveUNnicorn);
+  document.addEventListener("keydown", moveUnicorn);
 
   function update() {
     requestAnimationFrame(update);
+    context.clearRect(0, 0, board.width, board.height);
+
+    unicorn.x += velosityX;
+    if (unicorn.x > boardWidth) {
+      unicorn.x = 0;
+    } else if (unicorn.x + unicorn.width < 0) {
+      unicorn.x = boardWidth;
+    }
+
     context.drawImage(
       unicorn.img,
       unicorn.x,
@@ -59,13 +68,13 @@ window.onload = function () {
     );
   }
 
-  function moveUNnicorn(e) {
+  function moveUnicorn(e) {
     if (e.code == "ArrowRight" || e.code == "KeyD") {
       velosityX = 4;
-      unicorn.img = unicorn.unicornRightImg;
+      unicorn.img = unicornRightImg;
     } else if (e.code == "ArrowLeft" || e.code == "KeyA") {
       velosityX = -4;
-      unicorn.img = unicorn.unicornLeftImg;
+      unicorn.img = unicornLeftImg;
     }
   }
 };
