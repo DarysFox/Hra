@@ -54,7 +54,7 @@ window.onload = function () {
   unicornLeftImg.src = "images/pupi-left.png";
 
   planetImg = new Image();
-  planetImg.src = "images/marsik1.png";
+  planetImg.src = "images/pink-pl.png";
 
   velocityY = initialVelocityY;
 
