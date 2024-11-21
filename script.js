@@ -10,6 +10,14 @@ let unicornY = (unicornHeight * 85) / 8 - unicornHeight;
 let unicornRightImg;
 let unicornLeftImg;
 
+let unicorn = {
+  img: null,
+  x: unicornX,
+  y: unicornY,
+  width: unicornWidth,
+  height: unicornHeight,
+};
+
 let velosityX = 0;
 let velocityY = 0;
 let initialVelocityY = -8;
@@ -20,13 +28,9 @@ let planetWidth = 35;
 let planetHeight = 35;
 let planetImg;
 
-let unicorn = {
-  img: null,
-  x: unicornX,
-  y: unicornY,
-  width: unicornWidth,
-  height: unicornHeight,
-};
+let score = 0;
+let maxScore = 0;
+let gameOver = false;
 
 window.onload = function () {
   board = document.getElementById("board");
@@ -64,6 +68,9 @@ window.onload = function () {
 
   function update() {
     requestAnimationFrame(update);
+    if (gameOver) {
+      return;
+    }
     context.clearRect(0, 0, board.width, board.height);
 
     unicorn.x += velosityX;
@@ -75,6 +82,9 @@ window.onload = function () {
 
     velocityY += gravity;
     unicorn.y += velocityY;
+    if (unicorn.y > board.height) {
+      gameOver = true;
+    }
     context.drawImage(
       unicorn.img,
       unicorn.x,
@@ -85,6 +95,9 @@ window.onload = function () {
 
     for (let i = 0; i < planetArray.length; i++) {
       let planet = planetArray[i];
+      if (velocityY < 0 && unicorn.y < (boardHeight * 3) / 4) {
+        planet.y -= initialVelocityY;
+      }
       if (detectCollision(unicorn, planet) && velocityY >= 0) {
         velocityY = initialVelocityY;
       }
@@ -96,6 +109,24 @@ window.onload = function () {
         planet.height
       );
     }
+
+    while (planetArray.length > 0 && planetArray[0].y >= boardHeight) {
+      planetArray.shift();
+      newPlanet();
+    }
+
+    updateScore();
+    context.fillStyle = "white";
+    context.font = "16px sans-serif";
+    context.fillText(score, 5, 20);
+
+    if (gameOver) {
+      context.fillText(
+        "Game Over: Press 'Space' to Restart",
+        boardWidth / 7,
+        (boardHeight * 7) / 8
+      );
+    }
   }
 
   function moveUnicorn(e) {
@@ -105,6 +136,20 @@ window.onload = function () {
     } else if (e.code == "ArrowLeft" || e.code == "KeyA") {
       velosityX = -4;
       unicorn.img = unicornLeftImg;
+    } else if (e.code == "Space" && gameOver) {
+      let unicorn = {
+        img: unicornRightImg,
+        x: unicornX,
+        y: unicornY,
+        width: unicornWidth,
+        height: unicornHeight,
+      };
+      velocityX = 0;
+      velocityY = initialVelocityY;
+      score = 0;
+      maxScore = 0;
+      gameOver = false;
+      placePlanets();
     }
   }
 };
@@ -142,6 +187,18 @@ function placePlanets() {
   }
 }
 
+function newPlanet() {
+  let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
+  let planet = {
+    img: planetImg,
+    x: randomX,
+    y: -planetHeight,
+    width: planetWidth,
+    height: planetHeight,
+  };
+  planetArray.push(planet);
+}
+
 function detectCollision(a, b) {
   return (
     a.x < b.x + b.width &&
@@ -149,4 +206,16 @@ function detectCollision(a, b) {
     a.y < b.y + b.height &&
     a.y + a.height > b.y
   );
+}
+
+function updateScore() {
+  let points = Math.floor(2 * Math.random());
+  if (velocityY < 0) {
+    maxScore += points;
+    if (score < maxScore) {
+      score = maxScore;
+    }
+  } else if (velocityY >= 0) {
+    maxScore -= points;
+  }
 }
