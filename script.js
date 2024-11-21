@@ -38,7 +38,7 @@ window.onload = function () {
   // context.fillRect(unicorn.x, unicorn.y, unicorn.width, unicorn.height);
 
   unicornRightImg = new Image();
-  unicornRightImg.src = "images/unicorn-right.png";
+  unicornRightImg.src = "images/pupi-right.png";
   unicorn.img = unicornRightImg;
 
   unicornRightImg.onload = function () {
@@ -51,10 +51,10 @@ window.onload = function () {
     );
   };
   unicornLeftImg = new Image();
-  unicornLeftImg.src = "images/unicorn-left.png";
+  unicornLeftImg.src = "images/pupi-left.png";
 
   planetImg = new Image();
-  planetImg.src = "images/planetik.png";
+  planetImg.src = "images/marsik1.png";
 
   velocityY = initialVelocityY;
 
