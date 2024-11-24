@@ -6,7 +6,7 @@ let context;
 let unicornWidth = 46;
 let unicornHeight = 46;
 let unicornX = 150;
-let unicornY = (unicornHeight * 85) / 8 - unicornHeight;
+let unicornY = (unicornHeight * 90) / 8 - unicornHeight;
 let unicornRightImg;
 let unicornLeftImg;
 
@@ -42,7 +42,7 @@ window.onload = function () {
   // context.fillRect(unicorn.x, unicorn.y, unicorn.width, unicorn.height);
 
   unicornRightImg = new Image();
-  unicornRightImg.src = "images/pony3-right.png";
+  unicornRightImg.src = "images/maslo-right.png";
   unicorn.img = unicornRightImg;
 
   unicornRightImg.onload = function () {
@@ -55,7 +55,7 @@ window.onload = function () {
     );
   };
   unicornLeftImg = new Image();
-  unicornLeftImg.src = "images/pony3-removebg-preview.png";
+  unicornLeftImg.src = "images/maslo-removebg-preview.png";
 
   planetImg = new Image();
   planetImg.src = "images/planetik.png";

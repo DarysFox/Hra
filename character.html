@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="character-style.css" />
   </head>
   <body>
+    <div class="stars"></div>
     <h1>♡ Choose Your Unicorn ♡</h1>
     <div class="character-container">
       <div class="character-card">
@@ -32,6 +33,24 @@
           Choose
         </button>
       </div>
+
+      <div class="character-card locked" id="goldy-card">
+        <img src="images/loveable-logo.jpg" alt="Otazník" id="question-img" />
+        <img
+          src="images/maslo-removebg-preview.png"
+          alt="Goldy"
+          id="goldy-img"
+          class="hidden"
+        />
+        <p>Goldy</p>
+        <button
+          id="unlock-goldy"
+          onclick="window.location.href='background.html';"
+        >
+          Choose
+        </button>
+      </div>
     </div>
+    <script src="char.js"></script>
   </body>
 </html>
