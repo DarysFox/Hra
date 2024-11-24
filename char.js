@@ -4,6 +4,7 @@ const goldyImg = document.getElementById("goldy-img");
 const goldyName = document.getElementById("goldy-name");
 const hideName = document.getElementById("hide");
 const unlockButton = document.getElementById("unlock-goldy");
+myStorage = window.localStorage;
 
 unlockButton.addEventListener("click", () => {
   questionImg.classList.add("hidden");
@@ -19,3 +20,10 @@ unlockButton.addEventListener("click", () => {
     goldyCard.classList.remove("glow");
   }, 2000);
 });
+
+function choosePerson(e) {
+  localStorage.clear();
+  console.log(e);
+  localStorage.setItem("person", e);
+  window.location.href = "background.html";
+}

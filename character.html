@@ -13,25 +13,19 @@
       <div class="character-card">
         <img src="images/unicorn-left.png" alt="Character 1" />
         <p>Poppy</p>
-        <button onclick="window.location.href='background.html';">
-          Choose
-        </button>
+        <button onclick="choosePerson('poppy')">Choose</button>
       </div>
 
       <div class="character-card">
         <img src="images/pupi-left.png" alt="Character 2" />
         <p>Lily</p>
-        <button onclick="window.location.href='background.html';">
-          Choose
-        </button>
+        <button onclick="choosePerson('lily')">Choose</button>
       </div>
 
       <div class="character-card">
         <img src="images/pony3-removebg-preview.png" alt="Character 3" />
         <p>Berry</p>
-        <button onclick="window.location.href='background.html';">
-          Choose
-        </button>
+        <button onclick="choosePerson('berry')">Choose</button>
       </div>
 
       <div class="character-card locked" id="goldy-card">
@@ -46,7 +40,7 @@
         <p id="goldy-name" class="hidden">Goldy</p>
         <button
           id="unlock-goldy"
-          onclick="setInterval(function () {window.location.href='background.html'}, 3200);"
+          onclick="setInterval(function () {choosePerson('goldy')}, 3100);"
         >
           Choose
         </button>

@@ -7,7 +7,6 @@
 body {
   font-family: "Comic Sans MS", cursive, sans-serif;
   background: linear-gradient(to bottom, #1d055d, #6537fb);
-  /* background-image: url("images/eberhard-grossgasteiger-J9NDmBVhN04-unsplash.jpg"); */
   overflow: hidden;
   height: 100vh;
 }
@@ -59,6 +58,8 @@ p {
 }
 
 .start-button {
+  cursor: pointer;
+  font-family: "Comic Sans MS", cursive, sans-serif;
   display: inline-block;
   background: linear-gradient(to right, #a569bd, #845ec2);
   color: white;

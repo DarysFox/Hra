@@ -32,6 +32,50 @@ let score = 0;
 let maxScore = 0;
 let gameOver = false;
 
+let persons = {
+  poppy: {
+    leftImage: "images/unicorn-left.png",
+    rightImage: "images/unicorn-right.png",
+  },
+  lily: {
+    leftImage: "images/pupi-left.png",
+    rightImage: "images/pupi-right.png",
+  },
+  berry: {
+    leftImage: "images/pony3-removebg-preview.png",
+    rightImage: "images/pony3-right.png",
+  },
+  goldy: {
+    leftImage: "images/small.png",
+    rightImage: "images/maslo-right.png",
+  },
+};
+
+function getCharacter() {
+  myStorage = window.localStorage;
+  let person = localStorage.getItem("person");
+  // console.log("blabla", person);
+  // console.log(`person: ${persons[person]["leftImage"]}`);
+  if (persons[person] == undefined) {
+    return persons["poppy"];
+  }
+
+  return persons[person];
+}
+
+let planets = [
+  "images/planetik.png",
+  "images/planetik1.png",
+  "images/pink-pl.png",
+];
+
+function getRandomPlanet() {
+  let i = planets[Math.floor(Math.random() * planets.length)];
+  planetImg = new Image();
+  planetImg.src = i;
+  return planetImg;
+}
+
 window.onload = function () {
   board = document.getElementById("board");
   board.height = boardHeight;
@@ -41,8 +85,10 @@ window.onload = function () {
   // context.fillStyle = "pink";
   // context.fillRect(unicorn.x, unicorn.y, unicorn.width, unicorn.height);
 
+  let person = getCharacter();
+
   unicornRightImg = new Image();
-  unicornRightImg.src = "images/maslo-right.png";
+  unicornRightImg.src = person.rightImage;
   unicorn.img = unicornRightImg;
 
   unicornRightImg.onload = function () {
@@ -55,10 +101,10 @@ window.onload = function () {
     );
   };
   unicornLeftImg = new Image();
-  unicornLeftImg.src = "images/maslo-removebg-preview.png";
+  unicornLeftImg.src = person.leftImage;
 
-  planetImg = new Image();
-  planetImg.src = "images/planetik.png";
+  // planetImg = new Image();
+  // planetImg.src = r;
 
   velocityY = initialVelocityY;
 
@@ -155,9 +201,10 @@ window.onload = function () {
 };
 
 function placePlanets() {
+  // let planetImage = getRandomPlanet();
   planetArray = [];
   let planet = {
-    img: planetImg,
+    img: getRandomPlanet(),
     x: boardWidth / 2,
     y: boardHeight - 90,
     width: planetWidth,
@@ -177,7 +224,7 @@ function placePlanets() {
   for (let i = 0; i < 6; i++) {
     let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
     let planet = {
-      img: planetImg,
+      img: getRandomPlanet(),
       x: randomX,
       y: boardHeight - 75 * i - 190,
       width: planetWidth,
@@ -190,7 +237,7 @@ function placePlanets() {
 function newPlanet() {
   let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
   let planet = {
-    img: planetImg,
+    img: getRandomPlanet(),
     x: randomX,
     y: -planetHeight,
     width: planetWidth,
