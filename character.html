@@ -42,10 +42,11 @@
           id="goldy-img"
           class="hidden"
         />
-        <p>Goldy</p>
+        <p id="hide">???</p>
+        <p id="goldy-name" class="hidden">Goldy</p>
         <button
           id="unlock-goldy"
-          onclick="window.location.href='background.html';"
+          onclick="setInterval(function () {window.location.href='background.html'}, 3200);"
         >
           Choose
         </button>

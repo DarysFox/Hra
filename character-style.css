@@ -80,3 +80,17 @@ h1 {
 .locked button {
   cursor: pointer;
 }
+
+.character-card.glow {
+  box-shadow: 0 0 15px 5px gold;
+  animation: glow-effect 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow-effect {
+  from {
+    box-shadow: 0 0 10px 3px gold;
+  }
+  to {
+    box-shadow: 0 0 20px 10px gold;
+  }
+}
