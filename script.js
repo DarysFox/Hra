@@ -1,12 +1,12 @@
 let board;
-let boardWidth = 360;
-let boardHeight = 575;
+let boardWidth = 700;
+let boardHeight = 500;
 let context;
 
-let unicornWidth = 46;
-let unicornHeight = 46;
-let unicornX = 150;
-let unicornY = (unicornHeight * 90) / 8 - unicornHeight;
+let unicornWidth = 70;
+let unicornHeight = 70;
+let unicornX = 250;
+let unicornY = (unicornHeight * 50) / 8 - unicornHeight;
 let unicornRightImg;
 let unicornLeftImg;
 
@@ -24,8 +24,8 @@ let initialVelocityY = -8;
 let gravity = 0.4;
 
 let planetArray = [];
-let planetWidth = 35;
-let planetHeight = 35;
+let planetWidth = 50;
+let planetHeight = 50;
 let planetImg;
 
 let score = 0;
@@ -34,20 +34,20 @@ let gameOver = false;
 
 let persons = {
   poppy: {
-    leftImage: "images/unicorn-left.png",
-    rightImage: "images/unicorn-right.png",
+    leftImage: "images/poppy-left.png",
+    rightImage: "images/poppy-right.png",
   },
   lily: {
-    leftImage: "images/pupi-left.png",
-    rightImage: "images/pupi-right.png",
+    leftImage: "images/lily-left.png",
+    rightImage: "images/lily-right.png",
   },
   berry: {
-    leftImage: "images/pony3-removebg-preview.png",
-    rightImage: "images/pony3-right.png",
+    leftImage: "images/berry-left.png",
+    rightImage: "images/berry-right.png",
   },
   goldy: {
     leftImage: "images/small.png",
-    rightImage: "images/maslo-right.png",
+    rightImage: "images/small-right.png",
   },
 };
 
@@ -64,17 +64,34 @@ function getCharacter() {
 }
 
 let planets = [
-  "images/planetik.png",
-  "images/planetik1.png",
-  "images/pink-pl.png",
+  "images/bon1-removebg-preview.png",
+  "images/bon2-removebg-preview.png",
+  "images/bon3-removebg-preview.png",
+  "images/bon4-removebg-preview.png",
+  "images/bon5-removebg-preview.png",
+  "images/bon6-removebg-preview.png",
+  "images/bon7-removebg-preview.png",
+  "images/bon8-removebg-preview.png",
+  "images/bon9-removebg-preview.png",
+  "images/bon10-removebg-preview.png",
+  "images/bon11-removebg-preview.png",
 ];
-
 function getRandomPlanet() {
   let i = planets[Math.floor(Math.random() * planets.length)];
   planetImg = new Image();
   planetImg.src = i;
   return planetImg;
 }
+
+const audio = document.getElementById("myAudio");
+document.addEventListener(
+  "keydown",
+  () => {
+    audio.loop = true;
+    audio.play();
+  },
+  { once: true }
+);
 
 window.onload = function () {
   board = document.getElementById("board");
@@ -169,7 +186,7 @@ window.onload = function () {
     if (gameOver) {
       context.fillText(
         "Game Over: Press 'Space' to Restart",
-        boardWidth / 7,
+        boardWidth / 3,
         (boardHeight * 7) / 8
       );
     }
@@ -183,19 +200,27 @@ window.onload = function () {
       velosityX = -4;
       unicorn.img = unicornLeftImg;
     } else if (e.code == "Space" && gameOver) {
-      let unicorn = {
-        img: unicornRightImg,
-        x: unicornX,
-        y: unicornY,
-        width: unicornWidth,
-        height: unicornHeight,
-      };
-      velocityX = 0;
-      velocityY = initialVelocityY;
-      score = 0;
-      maxScore = 0;
-      gameOver = false;
-      placePlanets();
+      location.reload();
+      // unicornX = 90;
+      // unicornY = 40;
+      // velosityX = 0;
+      // velocityY = 0;
+
+      // let unicorn = {
+      //   img: unicornRightImg,
+      //   x: unicornX,
+      //   y: unicornY,
+      //   width: unicornWidth,
+      //   height: unicornHeight,
+      // };
+
+      // console.log(unicornY);
+      // velocityX = 0;
+      // velocityY = initialVelocityY;
+      // score = 0;
+      // maxScore = 0;
+      // gameOver = false;
+      // placePlanets();
     }
   }
 };

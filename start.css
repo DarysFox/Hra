@@ -6,7 +6,7 @@
 
 body {
   font-family: "Comic Sans MS", cursive, sans-serif;
-  background: linear-gradient(to bottom, #1d055d, #6537fb);
+  background: linear-gradient(to bottom, #97afea, #c6d3f3);
   overflow: hidden;
   height: 100vh;
 }
@@ -15,10 +15,11 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url("images/stardust.png") repeat;
+  background: url("images/—Pngtree—transparent\ colorful\ bubbles_5533018.png")
+    repeat;
   animation: move-stars 10s linear infinite;
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 @keyframes move-stars {
@@ -43,7 +44,7 @@ body {
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 4px 15px rgba(173, 142, 234, 0.5);
-  width: 320px;
+  width: 580px;
 }
 
 h1 {
@@ -74,5 +75,16 @@ p {
 
 .start-button:hover {
   background: linear-gradient(to right, #845ec2, #a569bd);
+  transform: scale(1.1);
+}
+
+img {
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 120px;
+  float: left;
+}
+
+img:hover {
   transform: scale(1.1);
 }

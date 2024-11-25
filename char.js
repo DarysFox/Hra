@@ -25,5 +25,14 @@ function choosePerson(e) {
   localStorage.clear();
   console.log(e);
   localStorage.setItem("person", e);
-  window.location.href = "background.html";
+  window.location.href = "index.html";
 }
+const audio = document.getElementById("myAudio");
+document.addEventListener(
+  "keydown",
+  () => {
+    audio.loop = true;
+    audio.play();
+  },
+  { once: true }
+);

@@ -4,21 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Start the Game</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
     <link rel="stylesheet" href="start.css" />
   </head>
   <body>
+    <img id="soundImage" src="images/musical-notex.png" alt="Spustit hudbu" />
+    <audio id="audio" src="Cooking-Show-chosic.com_.mp3"></audio>
+
     <div class="stars"></div>
     <div class="container">
       <div class="game-box">
-        <h1>✨ Welcome to the SpaceJump! ✨</h1>
+        <h1>♡ Welcome to the CandyJump! ♡</h1>
         <p>
           Are you ready for a magical unicorn adventure? <br />
           Click below to begin!
         </p>
-        <a href="character.html" class="start-button">
-          Start the Game</a
-        >
+        <a href="character.html" class="start-button"> Start the Game</a>
       </div>
     </div>
+    <script>
+      const soundImage = document.getElementById("soundImage");
+      const audio = document.getElementById("audio");
+
+      soundImage.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+          soundImage.src = "images/musical-note.png";
+          soundImage.alt = "Vypnout hudbu";
+        } else {
+          audio.pause();
+          soundImage.src = "images/musical-notex.png";
+          soundImage.alt = "Spustit hudbu";
+        }
+      });
+    </script>
   </body>
 </html>
