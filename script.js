@@ -32,6 +32,8 @@ let score = 0;
 let maxScore = 0;
 let gameOver = false;
 
+let gameStop = false;
+
 let persons = {
   poppy: {
     leftImage: "images/poppy-left.png",
@@ -78,9 +80,13 @@ let planets = [
 ];
 function getRandomPlanet() {
   let i = planets[Math.floor(Math.random() * planets.length)];
-  planetImg = new Image();
-  planetImg.src = i;
-  return planetImg;
+
+  return getImgBySrc(i);
+}
+function getImgBySrc(src) {
+  img = new Image();
+  img.src = src;
+  return img;
 }
 
 const audio = document.getElementById("myAudio");
@@ -173,7 +179,11 @@ window.onload = function () {
       );
     }
 
-    while (planetArray.length > 0 && planetArray[0].y >= boardHeight) {
+    while (
+      planetArray.length > 0 &&
+      planetArray[0].y >= boardHeight &&
+      gameStop == false
+    ) {
       planetArray.shift();
       newPlanet();
     }
@@ -261,14 +271,27 @@ function placePlanets() {
 
 function newPlanet() {
   let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
-  let planet = {
-    img: getRandomPlanet(),
-    x: randomX,
-    y: -planetHeight,
-    width: planetWidth,
-    height: planetHeight,
-  };
-  planetArray.push(planet);
+  if (score < 50) {
+    let planet = {
+      img: getRandomPlanet(),
+      x: randomX,
+      y: -planetHeight,
+      width: planetWidth,
+      height: planetHeight,
+    };
+    planetArray.push(planet);
+  } else if (score > 50) {
+    let planet = {
+      img: getImgBySrc("images/cas-removebg-preview.png"),
+      x: randomX,
+      y: -planetHeight,
+      width: 200,
+      height: 200,
+    };
+    planetArray.push(planet);
+    setTimeout(() => (window.location.href = "end.html"), 2000);
+    gameStop = true;
+  }
 }
 
 function detectCollision(a, b) {

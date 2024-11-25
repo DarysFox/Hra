@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>End</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="start.css" />
+  </head>
+  <body>
+    <img id="soundImage" src="images/musical-notex.png" alt="Spustit hudbu" />
+    <audio id="audio" src="Cooking-Show-chosic.com_.mp3"></audio>
+
+    <div class="stars"></div>
+    <div class="container">
+      <div class="game-box">
+        <h1>♡ You Won! ♡</h1>
+        <p>
+          Are you ready for another magical unicorn adventure? <br />
+          Click below to begin!
+        </p>
+        <a href="index.html" class="start-button"> Play Again </a>
+      </div>
+    </div>
+
+    <script>
+      const soundImage = document.getElementById("soundImage");
+      const audio = document.getElementById("audio");
+
+      soundImage.addEventListener("click", () => {
+        if (audio.paused) {
+          audio.play();
+          soundImage.src = "images/musical-note.png";
+          soundImage.alt = "Vypnout hudbu";
+        } else {
+          audio.pause();
+          soundImage.src = "images/musical-notex.png";
+          soundImage.alt = "Spustit hudbu";
+        }
+      });
+    </script>
+  </body>
+</html>
