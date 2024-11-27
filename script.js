@@ -56,8 +56,6 @@ let persons = {
 function getCharacter() {
   myStorage = window.localStorage;
   let person = localStorage.getItem("person");
-  // console.log("blabla", person);
-  // console.log(`person: ${persons[person]["leftImage"]}`);
   if (persons[person] == undefined) {
     return persons["poppy"];
   }
@@ -105,9 +103,6 @@ window.onload = function () {
   board.width = boardWidth;
   context = board.getContext("2d");
 
-  // context.fillStyle = "pink";
-  // context.fillRect(unicorn.x, unicorn.y, unicorn.width, unicorn.height);
-
   let person = getCharacter();
 
   unicornRightImg = new Image();
@@ -125,9 +120,6 @@ window.onload = function () {
   };
   unicornLeftImg = new Image();
   unicornLeftImg.src = person.leftImage;
-
-  // planetImg = new Image();
-  // planetImg.src = r;
 
   velocityY = initialVelocityY;
 
@@ -211,28 +203,13 @@ window.onload = function () {
       unicorn.img = unicornLeftImg;
     } else if (e.code == "Space" && gameOver) {
       location.reload();
-      // unicornX = 90;
-      // unicornY = 40;
-      // velosityX = 0;
-      // velocityY = 0;
-
-      // let unicorn = {
-      //   img: unicornRightImg,
-      //   x: unicornX,
-      //   y: unicornY,
-      //   width: unicornWidth,
-      //   height: unicornHeight,
-      // };
-
-      // console.log(unicornY);
-      // velocityX = 0;
-      // velocityY = initialVelocityY;
-      // score = 0;
-      // maxScore = 0;
-      // gameOver = false;
-      // placePlanets();
     }
   }
+  document.addEventListener("mousemove", (e) => {
+    let mouseX = e.clientX;
+
+    unicorn.x = mouseX - unicorn.width / 2;
+  });
 };
 
 function placePlanets() {
@@ -271,7 +248,7 @@ function placePlanets() {
 
 function newPlanet() {
   let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
-  if (score < 70) {
+  if (score < 100) {
     let planet = {
       img: getRandomPlanet(),
       x: randomX,
@@ -281,7 +258,7 @@ function newPlanet() {
     };
 
     planetArray.push(planet);
-  } else if (score > 70) {
+  } else if (score > 100) {
     let planet = {
       img: getImgBySrc("images/cas-removebg-preview.png"),
       x: randomX,

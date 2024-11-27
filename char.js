@@ -7,10 +7,6 @@ const unlockButton = document.getElementById("unlock-goldy");
 myStorage = window.localStorage;
 
 unlockButton.addEventListener("click", () => {
-  // var x = localStorage.getItem("scores");
-  // if (x < 70) {
-  //   alert("You have to reach score 70 :(");
-  // } else if (x >= 70) {
   questionImg.classList.add("hidden");
   goldyImg.classList.remove("hidden");
   hideName.classList.add("hidden");
@@ -24,16 +20,10 @@ unlockButton.addEventListener("click", () => {
   }, 2000);
 });
 
-// function saveScores() {
-//   localStorage.setItem("scores", JSON.stringify(score));
-// }
 function choosePerson(e) {
   localStorage.clear();
   console.log(e);
   localStorage.setItem("person", e);
-  // if (x < 70 && persons[person] == "goldy") {
-  //   window.location.href = "character.html";
-  //   choosePerson();
-  //}
+
   window.location.href = "index.html";
 }

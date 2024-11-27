@@ -3,16 +3,13 @@ body {
   font-family: "Comic Sans MS", cursive, sans-serif;
   text-align: center;
   background: linear-gradient(to bottom, #97afea, #c6d3f3);
-  /* background-image: url("images/alexander-grey-dG9fUG0Jpos-unsplash.jpg"); */
   overflow: hidden;
   height: 100vh;
 }
 
 #board {
-  /* background-color: palevioletred; */
   font-family: "Comic Sans MS", cursive, sans-serif;
   text-align: center;
-  /* background: linear-gradient(to bottom, #1d055d, #6537fb); */
   overflow: hidden;
   height: 100vh;
 }
