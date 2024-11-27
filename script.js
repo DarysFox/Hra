@@ -271,7 +271,7 @@ function placePlanets() {
 
 function newPlanet() {
   let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
-  if (score < 50) {
+  if (score < 70) {
     let planet = {
       img: getRandomPlanet(),
       x: randomX,
@@ -280,7 +280,7 @@ function newPlanet() {
       height: planetHeight,
     };
     planetArray.push(planet);
-  } else if (score > 50) {
+  } else if (score > 70) {
     let planet = {
       img: getImgBySrc("images/cas-removebg-preview.png"),
       x: randomX,

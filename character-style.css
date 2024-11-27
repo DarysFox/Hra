@@ -100,3 +100,14 @@ h1 {
     background-position: -500px 500px;
   }
 }
+
+#soundImage {
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 120px;
+  float: left;
+}
+
+#soundImage:hover {
+  transform: scale(1.1);
+}
