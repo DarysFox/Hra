@@ -1,1 +1,1 @@
-Sweet cute Game about Space, Planets and Unicorns
+♡ Sweet cute Game about Candies and Baby Unicorns ♡

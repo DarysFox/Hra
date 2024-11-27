@@ -7,23 +7,21 @@ const unlockButton = document.getElementById("unlock-goldy");
 myStorage = window.localStorage;
 
 unlockButton.addEventListener("click", () => {
-  var x = localStorage.getItem("scores");
-  if (x < 70) {
-    alert("You have to reach score 70 :(");
-  } else if (x >= 70) {
-    questionImg.classList.add("hidden");
-    goldyImg.classList.remove("hidden");
-    hideName.classList.add("hidden");
-    goldyName.classList.remove("hidden");
+  // var x = localStorage.getItem("scores");
+  // if (x < 70) {
+  //   alert("You have to reach score 70 :(");
+  // } else if (x >= 70) {
+  questionImg.classList.add("hidden");
+  goldyImg.classList.remove("hidden");
+  hideName.classList.add("hidden");
+  goldyName.classList.remove("hidden");
 
-    goldyCard.classList.remove("locked");
+  goldyCard.classList.remove("locked");
 
-    goldyCard.classList.add("glow");
-
-    setTimeout(() => {
-      goldyCard.classList.remove("glow");
-    }, 2000);
-  }
+  goldyCard.classList.add("glow");
+  setTimeout(() => {
+    goldyCard.classList.remove("glow");
+  }, 2000);
 });
 
 // function saveScores() {

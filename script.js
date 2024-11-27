@@ -279,6 +279,7 @@ function newPlanet() {
       width: planetWidth,
       height: planetHeight,
     };
+
     planetArray.push(planet);
   } else if (score > 70) {
     let planet = {
