@@ -1,3 +1,5 @@
+// confetti animace prevzata ze zdroju
+
 let W = window.innerWidth;
 let H = window.innerHeight;
 const canvas = document.getElementById("canvas");
@@ -21,11 +23,13 @@ const possibleColors = [
   "Crimson",
 ];
 
+// nacte animace hned po spusteni stranky
 window.onload = function () {
   function randomFromTo(from, to) {
     return Math.floor(Math.random() * (to - from + 1) + from);
   }
 
+  // rozmisteni castic
   function confettiParticle() {
     this.x = Math.random() * W;
     this.y = Math.random() * H - H;
@@ -37,6 +41,7 @@ window.onload = function () {
     this.tiltAngleIncremental = Math.random() * 0.07 + 0.05;
     this.tiltAngle = 0;
 
+    //generovani confetti
     this.draw = function () {
       context.beginPath();
       context.lineWidth = this.r / 2;
@@ -47,6 +52,7 @@ window.onload = function () {
     };
   }
 
+  //pohyb castic
   function Draw() {
     const results = [];
 

@@ -1,8 +1,10 @@
+// herni pole
 let board;
 let boardWidth = 700;
 let boardHeight = 500;
 let context;
 
+//jednorozec
 let unicornWidth = 70;
 let unicornHeight = 70;
 let unicornX = 250;
@@ -18,11 +20,13 @@ let unicorn = {
   height: unicornHeight,
 };
 
+//rychlost
 let velosityX = 0;
 let velocityY = 0;
 let initialVelocityY = -8;
 let gravity = 0.4;
 
+// bonbony
 let planetArray = [];
 let planetWidth = 50;
 let planetHeight = 50;
@@ -34,6 +38,7 @@ let gameOver = false;
 
 let gameStop = false;
 
+// kazdy jednorozec ma dva obrazky
 let persons = {
   poppy: {
     leftImage: "images/poppy-left.png",
@@ -53,6 +58,7 @@ let persons = {
   },
 };
 
+// prijma vybraneho jednorozce z local.storage
 function getCharacter() {
   myStorage = window.localStorage;
   let person = localStorage.getItem("person");
@@ -63,6 +69,7 @@ function getCharacter() {
   return persons[person];
 }
 
+// vsechny bonbony
 let planets = [
   "images/bon1-removebg-preview.png",
   "images/bon2-removebg-preview.png",
@@ -76,17 +83,21 @@ let planets = [
   "images/bon10-removebg-preview.png",
   "images/bon11-removebg-preview.png",
 ];
+
+// bere random bonbon z planets
 function getRandomPlanet() {
   let i = planets[Math.floor(Math.random() * planets.length)];
 
   return getImgBySrc(i);
 }
+
 function getImgBySrc(src) {
   img = new Image();
   img.src = src;
   return img;
 }
 
+// po stisknuti jakeho koliv tlacitka prehraje hudbu
 const audio = document.getElementById("myAudio");
 document.addEventListener(
   "keydown",
@@ -97,6 +108,7 @@ document.addEventListener(
   { once: true }
 );
 
+// hra
 window.onload = function () {
   board = document.getElementById("board");
   board.height = boardHeight;
@@ -109,6 +121,7 @@ window.onload = function () {
   unicornRightImg.src = person.rightImage;
   unicorn.img = unicornRightImg;
 
+  //generuje se jednorozec
   unicornRightImg.onload = function () {
     context.drawImage(
       unicorn.img,
@@ -123,6 +136,7 @@ window.onload = function () {
 
   velocityY = initialVelocityY;
 
+  //rozmisti se bonbony
   placePlanets();
   requestAnimationFrame(update);
   document.addEventListener("keydown", moveUnicorn);
@@ -135,6 +149,8 @@ window.onload = function () {
     context.clearRect(0, 0, board.width, board.height);
 
     unicorn.x += velosityX;
+
+    //pokud jednorozec uleti vpravo, objevi se vlevo
     if (unicorn.x > boardWidth) {
       unicorn.x = 0;
     } else if (unicorn.x + unicorn.width < 0) {
@@ -154,6 +170,7 @@ window.onload = function () {
       unicorn.height
     );
 
+    //pohyb
     for (let i = 0; i < planetArray.length; i++) {
       let planet = planetArray[i];
       if (velocityY < 0 && unicorn.y < (boardHeight * 3) / 4) {
@@ -180,11 +197,13 @@ window.onload = function () {
       newPlanet();
     }
 
+    //score na obrazovce
     updateScore();
     context.fillStyle = "white";
     context.font = "16px sans-serif";
     context.fillText(score, 5, 20);
 
+    //po zmacknuti space se restartne hra
     if (gameOver) {
       context.fillText(
         "Game Over: Press 'Space' to Restart",
@@ -194,6 +213,7 @@ window.onload = function () {
     }
   }
 
+  // pohyb jednorozce
   function moveUnicorn(e) {
     if (e.code == "ArrowRight" || e.code == "KeyD") {
       velosityX = 4;
@@ -246,6 +266,7 @@ function placePlanets() {
   }
 }
 
+// generace novych planet
 function newPlanet() {
   let randomX = Math.floor((Math.random() * boardWidth * 3) / 4);
   if (score < 100) {
@@ -258,6 +279,7 @@ function newPlanet() {
     };
 
     planetArray.push(planet);
+    // kdyz score je vetsi nez 100 tak misto planety se objevi domecek a prestanou se generovat bonbony
   } else if (score > 100) {
     let planet = {
       img: getImgBySrc("images/cas-removebg-preview.png"),
@@ -272,6 +294,7 @@ function newPlanet() {
   }
 }
 
+// detekuje kolizi
 function detectCollision(a, b) {
   return (
     a.x < b.x + b.width &&
@@ -281,6 +304,7 @@ function detectCollision(a, b) {
   );
 }
 
+// refreshuje score
 function updateScore() {
   let points = Math.floor(2 * Math.random());
   if (velocityY < 0) {
